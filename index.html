@@ -3,551 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anna Clara Santos — Dev & Tech</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Anna Clara Santos Cavalcante — Dev & Tech</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#09090f;
-  --bg2:#0f0f1a;
-  --surface:#13131f;
-  --surface2:#1a1a2e;
-  --border:rgba(255,255,255,.07);
-  --border2:rgba(255,255,255,.12);
-  --white:#ffffff;
-  --off-white:rgba(255,255,255,.88);
-  --muted:rgba(255,255,255,.38);
-  --muted2:rgba(255,255,255,.55);
-  --accent:#a78bfa;
-  --accent2:#7c3aed;
-  --accent3:#c4b5fd;
-  --pink:#f472b6;
-  --cyan:#22d3ee;
-  --green:#4ade80;
-  --yellow:#fbbf24;
+  --bg:#111410;
+  --bg2:#171b14;
+  --bg3:#1e2419;
+  --card:#1c2118;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(142,175,100,0.25);
+  --text:#ede8df;
+  --muted:#7a8a72;
+  --offwhite:#f0ece4;
+  --accent:#6b8f47;
+  --accent2:#8aaf5a;
+  --moss:#4e6e34;
+  --glow:rgba(107,143,71,0.15);
 }
 html{scroll-behavior:smooth}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg);
-  color:var(--off-white);
-  overflow-x:hidden;
-  cursor:none;
-  line-height:1.6;
-}
-
-/* ── NOISE OVERLAY ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:9997;opacity:.5;
-}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden;cursor:none}
 
 /* ── CURSOR ── */
-.cursor{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;mix-blend-mode:screen}
-.cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(167,139,250,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s;opacity:.7}
+#cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,width 0.2s,height 0.2s,opacity 0.2s;mix-blend-mode:screen}
+#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(107,143,71,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left 0.12s ease,top 0.12s ease,width 0.25s,height 0.25s}
+body:hover #cursor{opacity:1}
 
 /* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1.3rem 4rem;
-  background:rgba(9,9,15,.75);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{
-  font-family:'Syne',sans-serif;
-  font-size:1rem;font-weight:800;
-  color:var(--white);
-  letter-spacing:-.01em;
-}
-.nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:2.4rem;list-style:none}
-.nav-links a{
-  font-size:.72rem;font-weight:500;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--muted);text-decoration:none;
-  transition:color .2s;
-  font-family:'JetBrains Mono',monospace;
-}
-.nav-links a:hover{color:var(--accent)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(17,20,16,0.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--offwhite);text-decoration:none;letter-spacing:0.04em;font-style:italic}
+.nav-logo span{color:var(--accent);font-style:normal}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--accent2)}
+.nav-badge{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent2);border:1px solid var(--border2);padding:0.3rem 0.9rem;border-radius:99px;letter-spacing:0.07em;animation:badge-pulse 2.5s ease-in-out infinite}
+@keyframes badge-pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(107,143,71,0)}50%{opacity:0.7;box-shadow:0 0 0 4px rgba(107,143,71,0.08)}}
 
 /* ── HERO ── */
-.hero{
-  min-height:100vh;
-  display:grid;grid-template-columns:1fr 1fr;
-  padding-top:5rem;
-  position:relative;
-  overflow:hidden;
-}
+#hero{min-height:100vh;display:grid;grid-template-columns:1.15fr 0.85fr;align-items:center;padding:0 3rem;padding-top:5rem;gap:5rem;position:relative;overflow:hidden}
 
-/* grid bg */
-.hero::before{
-  content:'';
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(167,139,250,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(167,139,250,.05) 1px,transparent 1px);
-  background-size:72px 72px;
-  mask-image:radial-gradient(ellipse 70% 70% at 30% 50%,black,transparent);
-  pointer-events:none;
-}
+.hero-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(107,143,71,0.07) 0%,transparent 70%);top:50%;right:-100px;transform:translateY(-50%);pointer-events:none}
 
-/* glow */
-.hero::after{
-  content:'';
-  position:absolute;
-  top:-20%;left:-10%;
-  width:60%;height:80%;
-  background:radial-gradient(ellipse,rgba(124,58,237,.18) 0%,transparent 70%);
-  pointer-events:none;
-}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--accent2);letter-spacing:0.16em;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.75rem;opacity:0;animation:fade-up 0.8s 0.2s forwards}
+.hero-tag::before{content:'';width:28px;height:1px;background:var(--accent2)}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5.5vw,5.2rem);line-height:1.04;letter-spacing:-0.01em;color:var(--offwhite);margin-bottom:0.3rem;opacity:0;animation:fade-up 0.8s 0.35s forwards}
+h1 em{font-style:italic;color:var(--accent2)}
+.hero-role{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--muted);letter-spacing:0.07em;margin-bottom:1.5rem;margin-top:0.5rem;opacity:0;animation:fade-up 0.8s 0.5s forwards}
+.hero-desc{font-size:0.975rem;color:rgba(240,236,228,0.6);max-width:500px;line-height:1.9;margin-bottom:2.25rem;opacity:0;animation:fade-up 0.8s 0.65s forwards}
+.hero-desc strong{color:var(--offwhite);font-weight:500}
+.hero-btns{display:flex;gap:0.75rem;flex-wrap:wrap;opacity:0;animation:fade-up 0.8s 0.8s forwards}
 
-.hero-left{
-  display:flex;flex-direction:column;justify-content:center;
-  padding:4rem 3rem 4rem 4rem;
-  position:relative;z-index:2;
-}
+.btn-p{background:var(--accent);color:var(--offwhite);border:none;padding:0.8rem 1.8rem;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.09em;text-transform:uppercase;cursor:none;text-decoration:none;transition:all 0.25s;font-weight:500}
+.btn-p:hover{background:var(--accent2);box-shadow:0 8px 28px rgba(107,143,71,0.3);transform:translateY(-2px)}
+.btn-g{background:transparent;color:var(--muted);border:1px solid var(--border);padding:0.8rem 1.8rem;border-radius:99px;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.09em;text-transform:uppercase;cursor:none;text-decoration:none;transition:all 0.25s}
+.btn-g:hover{border-color:var(--border2);color:var(--accent2)}
 
-.hero-pill{
-  display:inline-flex;align-items:center;gap:.55rem;
-  padding:.35rem .9rem;
-  background:rgba(167,139,250,.1);
-  border:1px solid rgba(167,139,250,.25);
-  border-radius:999px;
-  font-family:'JetBrains Mono',monospace;
-  font-size:.65rem;letter-spacing:.08em;color:var(--accent3);
-  margin-bottom:2rem;width:fit-content;
-  opacity:0;animation:up .7s .1s forwards;
-}
-.pill-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.4s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+/* FOTO */
+.hero-right{display:flex;flex-direction:column;align-items:center;gap:1.5rem;opacity:0;animation:fade-up 0.9s 0.4s forwards}
+.photo-outer{position:relative;width:270px;height:310px}
+.photo-ring-1{position:absolute;inset:-14px;border-radius:50% 50% 48% 52% / 58% 58% 42% 42%;border:1px solid rgba(107,143,71,0.18);animation:rotate-slow 12s linear infinite}
+.photo-ring-2{position:absolute;inset:-26px;border-radius:50% 50% 48% 52% / 58% 58% 42% 42%;border:1px dashed rgba(107,143,71,0.09);animation:rotate-slow 20s linear infinite reverse}
+.photo-frame{width:270px;height:310px;border-radius:50% 50% 48% 52% / 58% 58% 42% 42%;overflow:hidden;border:2px solid rgba(107,143,71,0.3);position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(107,143,71,0.1)}
+.photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.95) saturate(0.9)}
+.photo-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(17,20,16,0.4) 100%);pointer-events:none}
+@keyframes rotate-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 
-h1.hero-name{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(3rem,5vw,4.8rem);
-  font-weight:800;
-  line-height:.95;
-  color:var(--white);
-  letter-spacing:-.03em;
-  margin-bottom:.4rem;
-  opacity:0;animation:up .8s .25s forwards;
-}
-h1.hero-name em{
-  font-style:normal;
-  background:linear-gradient(135deg,var(--accent),var(--pink));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-  display:block;
-}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;width:270px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:0.7rem 1rem}
+.stat-card-label{font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.2rem}
+.stat-card-val{font-size:0.8rem;color:var(--offwhite);font-weight:500;line-height:1.3}
+.stat-card-val span{color:var(--accent2)}
 
-.hero-role{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;color:var(--cyan);
-  letter-spacing:.1em;margin-bottom:2rem;
-  opacity:0;animation:up .8s .4s forwards;
-}
-.hero-role span{color:var(--muted)}
-
-.hero-bio{
-  font-size:.97rem;line-height:1.85;
-  color:var(--muted2);
-  max-width:450px;font-weight:300;
-  margin-bottom:3rem;
-  opacity:0;animation:up .8s .55s forwards;
-}
-.hero-bio strong{color:var(--off-white);font-weight:500}
-
-.hero-btns{
-  display:flex;gap:1rem;flex-wrap:wrap;
-  opacity:0;animation:up .8s .7s forwards;
-}
-.btn{
-  display:inline-flex;align-items:center;gap:.5rem;
-  padding:.75rem 1.6rem;
-  font-family:'Syne',sans-serif;
-  font-size:.78rem;font-weight:600;
-  letter-spacing:.06em;
-  text-transform:uppercase;text-decoration:none;
-  transition:all .22s;
-  border:1px solid;
-  border-radius:2px;
-}
-.btn-fill{
-  background:var(--accent);border-color:var(--accent);color:var(--bg);
-}
-.btn-fill:hover{background:var(--accent3);border-color:var(--accent3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(167,139,250,.3)}
-.btn-outline{
-  background:transparent;border-color:var(--border2);color:var(--off-white);
-}
-.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
-
-/* right panel */
-.hero-right{
-  position:relative;
-  display:flex;align-items:center;justify-content:flex-start;
-  padding:2rem 2rem 2rem 0;
-  z-index:2;
-}
-.hero-cards{
-  display:flex;flex-direction:column;gap:.8rem;width:100%;max-width:320px;
-  opacity:0;animation:fadeR .9s 1s forwards;
-}
-@keyframes fadeR{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-
-.hcard{
-  background:var(--surface);
-  border:1px solid var(--border);
-  padding:1rem 1.2rem;
-  transition:border-color .2s,transform .2s,background .2s;
-}
-.hcard:hover{border-color:rgba(167,139,250,.3);transform:translateX(-4px);background:var(--surface2)}
-.hc-label{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.58rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--accent);
-  margin-bottom:.3rem;
-}
-.hc-val{font-size:.88rem;color:var(--off-white);font-weight:400}
-
-.scroll-cue{
-  position:absolute;bottom:2.5rem;left:4rem;
-  display:flex;align-items:center;gap:.65rem;
-  font-family:'JetBrains Mono',monospace;
-  font-size:.58rem;letter-spacing:.15em;
-  color:var(--muted);text-transform:uppercase;
-  opacity:0;animation:fadeIn 1s 1.8s forwards;
-}
-.sc-line{width:36px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{width:36px}50%{width:16px}}
+@keyframes fade-up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── SECTIONS ── */
-section{padding:7rem 4rem;position:relative}
-.s-eyebrow{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.6rem;letter-spacing:.22em;
-  color:var(--accent);text-transform:uppercase;
-  margin-bottom:.6rem;display:flex;align-items:center;gap:.7rem;
-}
-.s-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent)}
-h2.s-title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(2rem,3.5vw,3rem);
-  font-weight:800;letter-spacing:-.03em;
-  color:var(--white);margin-bottom:4rem;line-height:1.05;
-}
+section{padding:5.5rem 3rem;border-top:1px solid var(--border)}
+.sec-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:3.5rem}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:0.63rem;color:var(--accent);letter-spacing:0.14em}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.5vw,2.9rem);line-height:1.1;color:var(--offwhite)}
+h2 em{font-style:italic;color:var(--accent2)}
 
 /* ── SOBRE ── */
-#sobre{background:var(--bg2)}
-.about-wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:5rem;align-items:start}
-.about-text p{
-  font-size:.97rem;line-height:1.9;
-  color:var(--muted2);font-weight:300;margin-bottom:1.3rem;
-}
-.about-text p strong{color:var(--off-white);font-weight:500}
+.sobre-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:5rem;align-items:start}
+.sobre-text p{font-size:0.975rem;color:rgba(240,236,228,0.62);line-height:1.9;margin-bottom:1.1rem}
+.sobre-text p strong{color:var(--offwhite);font-weight:500}
+.tags-row{display:flex;flex-wrap:wrap;gap:0.45rem;margin-top:1.75rem}
+.tag{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent2);background:rgba(107,143,71,0.08);border:1px solid rgba(107,143,71,0.2);padding:0.28rem 0.8rem;border-radius:99px;letter-spacing:0.06em;transition:all 0.2s;cursor:none}
+.tag:hover{background:rgba(107,143,71,0.18);border-color:var(--border2)}
 
-.about-pills{
-  display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;
-}
-.apill{
-  padding:.3rem .8rem;
-  border:1px solid var(--border2);
-  font-family:'JetBrains Mono',monospace;
-  font-size:.65rem;letter-spacing:.06em;
-  color:var(--muted2);
-  border-radius:999px;
-  transition:all .2s;
-}
-.apill:hover{border-color:var(--accent);color:var(--accent)}
-
-.side-stats{display:flex;flex-direction:column;gap:.9rem}
-.stat-box{
-  background:var(--surface);
-  border:1px solid var(--border);
-  padding:1.2rem 1.3rem;
-  transition:border-color .2s,transform .2s;
-}
-.stat-box:hover{border-color:rgba(167,139,250,.3);transform:translateX(4px)}
-.sb-top{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.58rem;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--accent);margin-bottom:.3rem;
-}
-.sb-val{font-size:.88rem;color:var(--off-white);font-weight:500}
-.sb-sub{font-size:.75rem;color:var(--muted);margin-top:.15rem;font-weight:300}
+.sobre-sidebar{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--card)}
+.info-row{padding:0.9rem 1.2rem;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:0.18rem;transition:background 0.2s}
+.info-row:last-child{border-bottom:none}
+.info-row:hover{background:var(--bg3)}
+.info-lbl{font-family:'JetBrains Mono',monospace;font-size:0.56rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase}
+.info-val{font-size:0.85rem;color:var(--offwhite);font-weight:500}
+.info-val a{color:var(--accent2);text-decoration:none}
 
 /* ── SKILLS ── */
-#habilidades{background:var(--bg)}
-.knowledge-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1.4rem;
-  margin-bottom:3rem;
-}
-.kcard{
-  background:var(--surface);
-  border:1px solid var(--border);
-  padding:1.6rem;
-  position:relative;overflow:hidden;
-  transition:all .25s;
-}
-.kcard::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--accent2),var(--pink));
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .3s;
-}
-.kcard:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.25)}
-.kcard:hover::before{transform:scaleX(1)}
-.kc-icon{font-size:1.4rem;margin-bottom:.8rem}
-.kc-name{
-  font-family:'Syne',sans-serif;
-  font-size:.9rem;font-weight:700;
-  color:var(--white);margin-bottom:.5rem;
-}
-.kc-desc{font-size:.8rem;color:var(--muted2);font-weight:300;line-height:1.6}
-.kc-level{
-  margin-top:.9rem;
-  display:flex;align-items:center;gap:.5rem;
-}
-.kl-bar{flex:1;height:1.5px;background:rgba(255,255,255,.08);overflow:hidden}
-.kl-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--pink));width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
-.kl-txt{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.58rem;letter-spacing:.06em;color:var(--muted);
-  white-space:nowrap;
-}
+#habilidades{background:var(--bg2)}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:0.7rem}
+.sk-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;transition:all 0.25s;position:relative;overflow:hidden}
+.sk-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--moss),var(--accent2));opacity:0;transition:opacity 0.25s}
+.sk-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,0.35)}
+.sk-card:hover::before{opacity:1}
+.sk-icon{font-size:1.4rem;margin-bottom:0.6rem;display:block}
+.sk-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--offwhite);margin-bottom:0.3rem;font-weight:600}
+.sk-desc{font-size:0.75rem;color:var(--muted);line-height:1.7;margin-bottom:0.8rem}
+.sk-lvl{font-family:'JetBrains Mono',monospace;font-size:0.57rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.22rem 0.65rem;border-radius:99px;display:inline-block}
+.lvl-g{color:var(--accent2);background:rgba(107,143,71,0.1);border:1px solid rgba(107,143,71,0.2)}
+.lvl-e{color:#b0a060;background:rgba(176,160,96,0.1);border:1px solid rgba(176,160,96,0.2)}
+.lvl-a{color:#7090a0;background:rgba(112,144,160,0.1);border:1px solid rgba(112,144,160,0.2)}
 
-.tools-wrap{
-  border-top:1px solid var(--border);
-  padding-top:2.5rem;
-}
-.tools-label{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.6rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--accent);
-  margin-bottom:1.2rem;
-}
-.tools-grid{display:flex;flex-wrap:wrap;gap:.55rem}
-.ttag{
-  padding:.38rem 1rem;
-  border:1px solid var(--border);
-  font-size:.75rem;color:var(--muted2);
-  font-family:'JetBrains Mono',monospace;
-  transition:all .2s;letter-spacing:.03em;
-}
-.ttag:hover{border-color:var(--accent);color:var(--accent);background:rgba(167,139,250,.06)}
+.tools-strip{margin-top:1.75rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem}
+.tools-lbl{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase;margin-bottom:1rem}
+.tools-list{display:flex;flex-wrap:wrap;gap:0.45rem}
+.tool{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);background:var(--bg3);border:1px solid var(--border);padding:0.28rem 0.75rem;border-radius:99px;transition:all 0.2s}
+.tool:hover{color:var(--accent2);border-color:var(--border2)}
 
-/* ── EXPERIÊNCIA ── */
-#experiencia{background:var(--bg2)}
-.timeline{padding-left:2.4rem;position:relative}
-.timeline::before{
-  content:'';position:absolute;left:0;top:.7rem;bottom:0;
-  width:1px;background:linear-gradient(to bottom,var(--accent),transparent);
-}
-.t-item{
-  position:relative;margin-bottom:3.5rem;
-  opacity:0;transform:translateY(16px);transition:all .6s ease;
-}
-.t-item.visible{opacity:1;transform:translateY(0)}
-.t-item::before{
-  content:'';
-  position:absolute;left:-2.4rem;top:.6rem;
-  width:8px;height:8px;border-radius:50%;
-  background:var(--accent2);
-  border:2px solid var(--bg2);
-  box-shadow:0 0 0 3px rgba(124,58,237,.3),0 0 12px rgba(124,58,237,.4);
-}
-.t-period{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.65rem;letter-spacing:.1em;color:var(--cyan);
-  text-transform:uppercase;margin-bottom:.3rem;
-}
-.t-title{
-  font-family:'Syne',sans-serif;
-  font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:.15rem;
-}
-.t-company{font-size:.82rem;color:var(--accent3);font-weight:500;margin-bottom:.8rem}
-.t-list{list-style:none;display:flex;flex-direction:column;gap:.4rem}
-.t-list li{
-  font-size:.88rem;color:var(--muted2);
-  padding-left:1.1rem;position:relative;
-  font-weight:300;line-height:1.65;
-}
-.t-list li::before{
-  content:'›';
-  position:absolute;left:0;color:var(--accent);font-size:1rem;top:-.05rem;
-}
+/* ── EXP ── */
+.exp-list{display:flex;flex-direction:column;gap:1rem}
+.exp-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.75rem 1.75rem 1.75rem 2rem;position:relative;overflow:hidden;transition:all 0.25s}
+.exp-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--moss),var(--accent2));border-radius:3px 0 0 3px}
+.exp-item:hover{border-color:var(--border2);box-shadow:0 10px 32px rgba(0,0,0,0.3);transform:translateX(4px)}
+.exp-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.35rem;flex-wrap:wrap;gap:0.5rem}
+.exp-role{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--offwhite);font-weight:600}
+.exp-period{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent2);background:rgba(107,143,71,0.1);border:1px solid rgba(107,143,71,0.2);padding:0.2rem 0.65rem;border-radius:99px;letter-spacing:0.06em}
+.exp-co{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:1rem;letter-spacing:0.04em}
+.exp-ul{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+.exp-ul li{font-size:0.85rem;color:rgba(240,236,228,0.6);padding-left:1.1rem;position:relative;line-height:1.65}
+.exp-ul li::before{content:'◆';position:absolute;left:0;color:var(--accent);font-size:0.4rem;top:0.45rem}
 
 /* ── FORMAÇÃO ── */
-#formacao{background:var(--bg)}
-.edu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-bottom:3.5rem}
-.edu-card{
-  background:var(--surface);border:1px solid var(--border);
-  padding:1.8rem;position:relative;overflow:hidden;
-  transition:all .25s;
-}
-.edu-card:hover{border-color:rgba(167,139,250,.3);transform:translateY(-3px)}
-.edu-badge{
-  display:inline-block;
-  padding:.18rem .65rem;
-  background:rgba(167,139,250,.12);
-  border:1px solid rgba(167,139,250,.25);
-  font-family:'JetBrains Mono',monospace;
-  font-size:.58rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--accent3);
-  margin-bottom:.9rem;border-radius:999px;
-}
-.edu-icon{font-size:1.4rem;margin-bottom:.6rem}
-.edu-degree{
-  font-family:'Syne',sans-serif;
-  font-size:1rem;font-weight:700;
-  color:var(--white);margin-bottom:.2rem;
-}
-.edu-school{font-size:.8rem;color:var(--accent3);font-weight:500;margin-bottom:.15rem}
-.edu-period{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.62rem;color:var(--muted);letter-spacing:.05em;
-}
-
-.cert-section{}
-.cert-label{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.6rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--accent);margin-bottom:1.4rem;
-}
-.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}
-.cert{
-  display:flex;align-items:center;gap:.85rem;
-  padding:.85rem 1.1rem;
-  background:var(--surface);border:1px solid var(--border);
-  font-size:.84rem;transition:all .2s;
-}
-.cert:hover{background:var(--surface2);border-color:rgba(167,139,250,.25)}
-.cert-dot{width:4px;height:4px;border-radius:50%;background:var(--cyan);flex-shrink:0}
-.cert-name{flex:1;font-weight:400;color:var(--off-white);font-size:.82rem}
-.cert-meta{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.62rem;color:var(--muted);white-space:nowrap;
-}
+#formacao{background:var(--bg2)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:1.5rem}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.6rem;display:flex;flex-direction:column;gap:0.4rem;transition:all 0.25s}
+.edu-card:hover{border-color:var(--border2);box-shadow:0 8px 24px rgba(0,0,0,0.25)}
+.edu-icon{font-size:1.6rem;margin-bottom:0.2rem}
+.edu-deg{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--offwhite);font-weight:600}
+.edu-inst{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.04em}
+.edu-per{font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent2);margin-top:0.2rem}
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:0.6rem}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;transition:all 0.2s}
+.cert-card:hover{border-color:var(--border2)}
+.cert-name{font-size:0.83rem;font-weight:500;color:var(--offwhite);margin-bottom:0.22rem}
+.cert-info{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.06em}
 
 /* ── CONTATO ── */
-#contato{
-  background:var(--bg2);
-  text-align:center;
-  padding:8rem 4rem;
-  position:relative;
-  overflow:hidden;
-}
-#contato::before{
-  content:'';
-  position:absolute;
-  bottom:-30%;left:50%;transform:translateX(-50%);
-  width:60%;height:80%;
-  background:radial-gradient(ellipse,rgba(124,58,237,.12),transparent 70%);
-  pointer-events:none;
-}
-#contato .s-eyebrow{justify-content:center}
-#contato .s-eyebrow::before{display:none}
-#contato h2.s-title{margin-bottom:.8rem}
-.contact-sub{
-  font-size:.97rem;color:var(--muted2);
-  font-weight:300;line-height:1.8;
-  max-width:420px;margin:0 auto 3.5rem;
-}
-.contact-grid{
-  display:flex;justify-content:center;gap:1.2rem;
-  flex-wrap:wrap;margin-bottom:3rem;
-}
-.c-card{
-  display:flex;flex-direction:column;align-items:center;gap:.5rem;
-  padding:1.5rem 1.8rem;min-width:180px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  text-decoration:none;transition:all .25s;
-  border-radius:2px;
-}
-.c-card:hover{background:var(--surface2);border-color:rgba(167,139,250,.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(124,58,237,.12)}
-.c-icon{font-size:1.3rem}
-.c-label{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.58rem;letter-spacing:.15em;color:var(--accent);
-  text-transform:uppercase;
-}
-.c-value{font-size:.78rem;color:var(--muted2);word-break:break-all;text-align:center}
-.open-badge{
-  display:inline-flex;align-items:center;gap:.6rem;
-  padding:.55rem 1.4rem;
-  border:1px solid rgba(74,222,128,.3);
-  background:rgba(74,222,128,.06);
-  font-family:'JetBrains Mono',monospace;
-  font-size:.65rem;letter-spacing:.1em;
-  color:rgba(74,222,128,.85);text-transform:uppercase;
-}
-.open-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.4s infinite}
 
-footer{
-  background:var(--bg);
-  padding:1.4rem 4rem;
-  display:flex;justify-content:space-between;align-items:center;
-  border-top:1px solid var(--border);
-}
-.f-logo{
-  font-family:'Syne',sans-serif;
-  font-size:.85rem;font-weight:700;
-  color:var(--muted);
-}
-.f-copy{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.58rem;letter-spacing:.1em;color:rgba(255,255,255,.15);
-}
+.contact-intro{font-size:0.975rem;color:rgba(240,236,228,0.6);line-height:1.9;margin-bottom:2rem}
+.clinks{display:flex;flex-direction:column;gap:0.5rem}
+.clink{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:0.9rem 1.2rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;transition:all 0.2s}
+.clink:hover{border-color:var(--border2);background:var(--bg3);transform:translateX(4px)}
+.clink-l{display:flex;flex-direction:column;gap:0.15rem}
+.clink-type{font-family:'JetBrains Mono',monospace;font-size:0.56rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase}
+.clink-val{font-size:0.85rem;color:var(--offwhite);font-weight:500}
+.clink-arr{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--accent2);opacity:0;transform:translateX(-5px);transition:all 0.2s}
+.clink:hover .clink-arr{opacity:1;transform:translateX(0)}
+.loc-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;display:flex;flex-direction:column;gap:1rem}
+.loc-lbl{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase}
+.loc-val{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--offwhite);line-height:1.2}
+.status-badge{display:inline-flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:var(--accent2);background:rgba(107,143,71,0.1);border:1px solid rgba(107,143,71,0.2);padding:0.38rem 0.9rem;border-radius:99px;letter-spacing:0.06em;width:fit-content}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:sdot 1.8s ease-in-out infinite}
+@keyframes sdot{0%,100%{opacity:1}50%{opacity:0.2}}
 
-/* ── ANIMATIONS ── */
-@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+
+/* ── CONTACT CARDS ── */
+.clinks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.7rem;max-width:900px;margin:0 auto}
+.clink-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1rem;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:0.4rem;transition:all 0.25s}
+.clink-card:hover{border-color:var(--border2);background:var(--bg3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.3)}
+.clink-icon{font-size:1.4rem;margin-bottom:0.25rem}
+.clink-type{font-family:var(--mono);font-size:0.58rem;color:var(--accent2);letter-spacing:0.13em;text-transform:uppercase}
+.clink-val{font-size:0.78rem;color:var(--muted);text-align:center;line-height:1.4}
+@media(max-width:700px){.clinks-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.clinks-grid{grid-template-columns:1fr}}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:1.75rem 3rem;display:flex;justify-content:space-between;align-items:center;background:var(--bg2)}
+.foot-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--offwhite);font-style:italic}
+.foot-copy{font-family:'JetBrains Mono',monospace;font-size:0.58rem;color:var(--muted);letter-spacing:0.08em}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.75s ease,transform 0.75s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 /* ── RESPONSIVE ── */
-@media(max-width:960px){
+@media(max-width:900px){
   nav{padding:1rem 1.5rem}
-  .nav-links{gap:1.2rem}
-  section{padding:5rem 1.5rem}
-  .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-left{padding:6.5rem 1.5rem 2rem}
-  .hero-right{padding:1.5rem;justify-content:center}
-  .hero-cards{flex-direction:row;flex-wrap:wrap;max-width:100%}
-  .hcard{min-width:140px;flex:1}
-  .about-wrap{grid-template-columns:1fr;gap:2.5rem}
-  .knowledge-grid{grid-template-columns:1fr 1fr;gap:1rem}
-  .edu-grid{grid-template-columns:1fr;gap:1rem}
-  .cert-grid{grid-template-columns:1fr}
-  footer{padding:1.2rem 1.5rem;flex-direction:column;gap:.4rem;text-align:center}
-  .contact-grid{flex-direction:column;align-items:center}
-  .c-card{width:100%;max-width:300px}
-  .scroll-cue{display:none}
-}
-@media(max-width:600px){
-  .knowledge-grid{grid-template-columns:1fr}
-  h1.hero-name{font-size:clamp(2.4rem,10vw,3.5rem)}
-  .hero-btns{flex-direction:column}
-  .btn{justify-content:center}
+  .nav-links{display:none}
+  #hero{grid-template-columns:1fr;padding:1.5rem;padding-top:6rem;gap:2.5rem}
+  .hero-bg-line{display:none}
+  .hero-right{order:-1;padding-top:1rem}
+  .photo-frame,.photo-outer{width:200px;height:230px}
+  .hero-stats{width:200px}
+  section{padding:4rem 1.5rem}
+  .sobre-grid,.contact-grid,.edu-grid{grid-template-columns:1fr;gap:2rem}
+  h1{font-size:2.8rem}
+  footer{padding:1.25rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center}
+  body{cursor:auto}
+  #cursor,#cursor-ring{display:none}
 }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Anna <span>Clara</span></div>
+  <a href="#hero" class="nav-logo">Anna Clara<span> ✦</span></a>
   <ul class="nav-links">
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#habilidades">Skills</a></li>
@@ -555,396 +220,248 @@ footer{
     <li><a href="#formacao">Formação</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
+  <span class="nav-badge">✦ Disponível · Brasília</span>
 </nav>
 
 <!-- HERO -->
-<div class="hero" id="inicio">
-  <div class="hero-left">
-    <div class="hero-pill">
-      <span class="pill-dot"></span>
-      Disponível para oportunidades · Brasília, DF
-    </div>
-    <h1 class="hero-name">
-      Anna Clara<br>
-      <em>Santos Cavalcante</em>
-    </h1>
-    <p class="hero-role">// Full-Stack Dev &nbsp;·&nbsp; Automações &amp; APIs &nbsp;·&nbsp; <span>Ciência da Computação</span></p>
-    <p class="hero-bio">
-      Estudante de <strong>Ciência da Computação</strong> apaixonada por construir coisas que funcionam. Stack em Python, JavaScript, React e SQL — com foco em desenvolvimento web completo, automações inteligentes e boas práticas de engenharia de software.
+<section id="hero">
+  <div class="hero-glow"></div>
+
+  <div>
+    <div class="hero-tag">Full-Stack Dev · Automações & APIs · Brasília, DF</div>
+    <h1>Anna Clara <em>Santos Cavalcante</em></h1>
+    <p class="hero-role">// Ciência da Computação · UniCEUB · Python · JavaScript · React</p>
+    <p class="hero-desc">
+      Estudante de <strong>Ciência da Computação</strong> com perfil resolutivo e experiência em suporte técnico e administração pública.
+      Foco em <strong>desenvolvimento web</strong> e automação de processos com base sólida em fundamentos da web, versionamento e boas práticas.
     </p>
     <div class="hero-btns">
-      <a href="#contato" class="btn btn-fill">✉ Fale comigo</a>
-      <a href="https://github.com/Annna-sys" target="_blank" rel="noopener" class="btn btn-outline">⌥ GitHub →</a>
+      <a href="#contato" class="btn-p">✉ Fale comigo</a>
+      <a href="https://github.com/Annna-sys" target="_blank" class="btn-g">GitHub →</a>
     </div>
   </div>
 
   <div class="hero-right">
-    <div class="hero-cards">
-      <div class="hcard">
-        <div class="hc-label">Posição atual</div>
-        <div class="hc-val">Suporte Jr · Positivo S+</div>
-      </div>
-      <div class="hcard">
-        <div class="hc-label">Formação</div>
-        <div class="hc-val">Ciência da Computação · UNICEUB</div>
-      </div>
-      <div class="hcard">
-        <div class="hc-label">Stack principal</div>
-        <div class="hc-val">Python · JavaScript · React · SQL</div>
-      </div>
-      <div class="hcard">
-        <div class="hc-label">Automações</div>
-        <div class="hc-val">N8N · Make · REST APIs</div>
-      </div>
-      <div class="hcard">
-        <div class="hc-label">DevOps em estudo</div>
-        <div class="hc-val">Docker · Git · CI/CD · Linux</div>
+    <div class="photo-outer">
+      <div class="photo-ring-1"></div>
+      <div class="photo-ring-2"></div>
+      <div class="photo-frame">
+        <img src="data:image/png;base64,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" alt="Anna Clara Santos Cavalcante">
       </div>
     </div>
-  </div>
-
-  <div class="scroll-cue">
-    <div class="sc-line"></div>
-    Scroll para explorar
-  </div>
-</div>
-
-<!-- SOBRE -->
-<section id="sobre">
-  <div class="s-eyebrow">01 · Sobre mim</div>
-  <h2 class="s-title">Quem sou<br>&amp; o que construo</h2>
-  <div class="about-wrap">
-    <div class="about-text reveal">
-      <p>
-        Sou Anna Clara, desenvolvedora em formação com olhar técnico e perfil resolutivo. Curso <strong>Ciência da Computação no UNICEUB</strong> e transformo aprendizado em código — com foco em desenvolvimento web completo, desde o HTML semântico até a infraestrutura que sustenta a aplicação.
-      </p>
-      <p>
-        Tenho conhecimentos sólidos em <strong>fundamentos da web, HTTP, versionamento com Git</strong> e desenvolvimento back-end com <strong>Python</strong>. No front, domino <strong>HTML, CSS e JavaScript</strong>, com React para interfaces dinâmicas e integração entre front e back. Também exploro o universo de <strong>automações com N8N e Make</strong>, conectando APIs e fluxos inteligentes.
-      </p>
-      <p>
-        Minha passagem pelo <strong>suporte técnico e pelo setor público federal</strong> me deu uma perspectiva única: entendo o usuário final, penso em impacto real e sei trabalhar com responsabilidade e documentação. Carrego isso para cada linha de código que escrevo.
-      </p>
-      <div class="about-pills">
-        <span class="apill">Web Development</span>
-        <span class="apill">Python Backend</span>
-        <span class="apill">React</span>
-        <span class="apill">REST APIs</span>
-        <span class="apill">Automações</span>
-        <span class="apill">Docker</span>
-        <span class="apill">Git</span>
-        <span class="apill">Brasília, DF</span>
-      </div>
-    </div>
-    <div class="side-stats reveal">
-      <div class="stat-box">
-        <div class="sb-top">Objetivo</div>
-        <div class="sb-val">Estágio em TI / Dev</div>
-        <div class="sb-sub">Full-stack · Back-end · Automações</div>
-      </div>
-      <div class="stat-box">
-        <div class="sb-top">Experiência</div>
-        <div class="sb-val">Suporte Técnico N1</div>
-        <div class="sb-sub">Positivo S+ · 2025 → Atual</div>
-      </div>
-      <div class="stat-box">
-        <div class="sb-top">GitHub</div>
-        <div class="sb-val">Annna-sys</div>
-        <div class="sb-sub">Projetos e estudos em evolução</div>
-      </div>
-      <div class="stat-box">
-        <div class="sb-top">Disponibilidade</div>
-        <div class="sb-val">Imediata</div>
-        <div class="sb-sub">Aberta a oportunidades internacionais</div>
-      </div>
+    <div class="hero-stats">
+      <div class="stat-card"><div class="stat-card-label">Posição</div><div class="stat-card-val">Suporte Jr<br><span>Positivo S+</span></div></div>
+      <div class="stat-card"><div class="stat-card-label">Formação</div><div class="stat-card-val">Ciência da<br>Computação</div></div>
+      <div class="stat-card"><div class="stat-card-label">Stack</div><div class="stat-card-val">Python · JS<br><span>React · SQL</span></div></div>
+      <div class="stat-card"><div class="stat-card-label">Foco</div><div class="stat-card-val">Web Dev<br><span>Automações</span></div></div>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="habilidades">
-  <div class="s-eyebrow">02 · Conhecimentos</div>
-  <h2 class="s-title">Stack &amp;<br>Domínios técnicos</h2>
-
-  <div class="knowledge-grid">
-
-    <div class="kcard reveal">
-      <div class="kc-icon">🌐</div>
-      <div class="kc-name">Fundamentos Web &amp; HTTP</div>
-      <div class="kc-desc">HTML semântico, CSS responsivo, protocolo HTTP/HTTPS, métodos de requisição, status codes e como a web realmente funciona.</div>
-      <div class="kc-level">
-        <div class="kl-bar"><div class="kl-fill" data-width="68"></div></div>
-        <span class="kl-txt">Bom domínio</span>
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="sec-header"><span class="sec-num">01 ·</span><h2>Quem sou & o que <em>construo</em></h2></div>
+  <div class="sobre-grid reveal">
+    <div class="sobre-text">
+      <p>Sou Anna Clara, desenvolvedora em formação com olhar técnico e perfil resolutivo. Curso <strong>Ciência da Computação na UniCEUB EAD</strong> e transformo aprendizado em código — com foco em desenvolvimento web completo, desde o HTML semântico até a infraestrutura que sustenta a aplicação.</p>
+      <p>Tenho base sólida em <strong>fundamentos da web, HTTP/HTTPS, versionamento com Git</strong> e desenvolvimento back-end com <strong>Python</strong>. No front, domino <strong>HTML5, CSS3 e JavaScript ES6+</strong>, com React para interfaces dinâmicas e integração entre front e back via APIs REST.</p>
+      <p>Também exploro o universo de <strong>automações com N8N e Make</strong>, conectando sistemas via webhooks e fluxos inteligentes. Minha passagem pelo <strong>suporte técnico e pelo setor público federal</strong> me deu perspectiva única: entendo o usuário final, penso em impacto real e trabalho com responsabilidade e documentação rigorosa.</p>
+      <div class="tags-row">
+        <span class="tag">Clean Code</span><span class="tag">SOLID</span><span class="tag">Python</span>
+        <span class="tag">JavaScript ES6+</span><span class="tag">React</span><span class="tag">REST APIs</span>
+        <span class="tag">N8N · Make</span><span class="tag">Docker</span><span class="tag">Git/GitHub</span>
+        <span class="tag">SQL</span><span class="tag">Linux</span><span class="tag">LGPD</span>
       </div>
     </div>
-
-    <div class="kcard reveal">
-      <div class="kc-icon">🔀</div>
-      <div class="kc-name">Git &amp; Versionamento</div>
-      <div class="kc-desc">Git para controle de versão, fluxos com branches, pull requests, resolução de conflitos e boas práticas de commits.</div>
-      <div class="kc-level">
-        <div class="kl-bar"><div class="kl-fill" data-width="65"></div></div>
-        <span class="kl-txt">Bom domínio</span>
-      </div>
+    <div class="sobre-sidebar">
+      <div class="info-row"><span class="info-lbl">Objetivo</span><span class="info-val">Estágio / Dev Júnior</span></div>
+      <div class="info-row"><span class="info-lbl">Área</span><span class="info-val">Full-stack · Back-end · Automações</span></div>
+      <div class="info-row"><span class="info-lbl">E-mail</span><span class="info-val"><a href="mailto:annaclarasantosxz@gmail.com">annaclarasantosxz@gmail.com</a></span></div>
+      <div class="info-row"><span class="info-lbl">Telefone</span><span class="info-val">(61) 99106-7046</span></div>
+      <div class="info-row"><span class="info-lbl">GitHub</span><span class="info-val"><a href="https://github.com/Annna-sys" target="_blank">Annna-sys →</a></span></div>
+      <div class="info-row"><span class="info-lbl">LinkedIn</span><span class="info-val"><a href="https://www.linkedin.com/in/anna-clara-santos-cavalcante-446561315" target="_blank">Ver perfil →</a></span></div>
+      <div class="info-row"><span class="info-lbl">Disponibilidade</span><span class="info-val">Imediata</span></div>
+      <div class="info-row"><span class="info-lbl">Oportunidades</span><span class="info-val">Aberta a projetos internacionais</span></div>
     </div>
-
-    <div class="kcard reveal">
-      <div class="kc-icon">🐍</div>
-      <div class="kc-name">Python — Back-end</div>
-      <div class="kc-desc">Scripts, automações e APIs com Python. Manipulação de dados, lógica de negócio e integração com bancos de dados e serviços externos.</div>
-      <div class="kc-level">
-        <div class="kl-bar"><div class="kl-fill" data-width="60"></div></div>
-        <span class="kl-txt">Em evolução</span>
-      </div>
-    </div>
-
-    <div class="kcard reveal">
-      <div class="kc-icon">🗄️</div>
-      <div class="kc-name">Banco de Dados</div>
-      <div class="kc-desc">SQL para consultas, modelagem relacional, CRUD, JOINs e fundamentos de banco de dados aplicados a projetos reais.</div>
-      <div class="kc-level">
-        <div class="kl-bar"><div class="kl-fill" data-width="55"></div></div>
-        <span class="kl-txt">Em evolução</span>
-      </div>
-    </div>
-
-    <div class="kcard reveal">
-      <div class="kc-icon">⚛️</div>
-      <div class="kc-name">React</div>
-      <div class="kc-desc">Componentes funcionais, hooks, gerenciamento de estado e criação de interfaces modernas e reativas com React.</div>
-      <div class="kc-level">
-        <div class="kl-bar"><div class="kl-fill" data-width="52"></div></div>
-        <span class="kl-txt">Em evolução</span>
-      </div>
-    </div>
-
-    <div class="kcard reveal">
-      <div class="kc-icon">🔗</div>
-      <div class="kc-name">Integração Front + Back</div>
-      <div class="kc-desc">Conexão entre cliente e servidor via fetch/axios, consumo de APIs REST, autenticação e fluxo completo de dados ponta a ponta.</div>
-      <div class="kc-level">
-        <div class="kl-bar"><div class="kl-fill" data-width="55"></div></div>
-        <span class="kl-txt">Em evolução</span>
-      </div>
-    </div>
-
-    <div class="kcard reveal">
-      <div class="kc-icon">⚡</div>
-      <div class="kc-name">Automações N8N / Make &amp; APIs</div>
-      <div class="kc-desc">Criação de fluxos de automação no-code/low-code, integração entre sistemas via webhooks, REST e JSON para conectar serviços de forma eficiente.</div>
-      <div class="kc-level">
-        <div class="kl-bar"><div class="kl-fill" data-width="62"></div></div>
-        <span class="kl-txt">Bom domínio</span>
-      </div>
-    </div>
-
-    <div class="kcard reveal">
-      <div class="kc-icon">🐳</div>
-      <div class="kc-name">Infraestrutura, Docker &amp; CI/CD</div>
-      <div class="kc-desc">Conceitos de contêineres com Docker, imagens e volumes, fundamentos de pipelines CI/CD e deploy de aplicações em ambiente controlado.</div>
-      <div class="kc-level">
-        <div class="kl-bar"><div class="kl-fill" data-width="42"></div></div>
-        <span class="kl-txt">Aprendendo</span>
-      </div>
-    </div>
-
-    <div class="kcard reveal">
-      <div class="kc-icon">✅</div>
-      <div class="kc-name">Boas Práticas de Dev</div>
-      <div class="kc-desc">Código limpo, documentação, SOLID, DRY, revisão de código, testes e cultura de desenvolvimento sustentável e colaborativo.</div>
-      <div class="kc-level">
-        <div class="kl-bar"><div class="kl-fill" data-width="60"></div></div>
-        <span class="kl-txt">Bom domínio</span>
-      </div>
-    </div>
-
   </div>
+</section>
 
-  <div class="tools-wrap reveal">
-    <div class="tools-label">Ferramentas &amp; Soft Skills</div>
-    <div class="tools-grid">
-      <span class="ttag">VS Code</span>
-      <span class="ttag">Postman</span>
-      <span class="ttag">Linux</span>
-      <span class="ttag">GitHub</span>
-      <span class="ttag">SEI!</span>
-      <span class="ttag">LGPD</span>
-      <span class="ttag">💬 Comunicação clara</span>
-      <span class="ttag">🤝 Trabalho em equipe</span>
-      <span class="ttag">⚡ Proatividade</span>
-      <span class="ttag">🔍 Atenção aos detalhes</span>
-      <span class="ttag">📋 Organização</span>
-      <span class="ttag">🛡️ Resiliência</span>
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <div class="sec-header"><span class="sec-num">02 ·</span><h2>Stack & <em>Domínios técnicos</em></h2></div>
+  <div class="skills-grid reveal">
+    <div class="sk-card"><span class="sk-icon">🌐</span><div class="sk-name">Fundamentos Web & HTTP</div><div class="sk-desc">HTML5 semântico, CSS3 responsivo, HTTP/HTTPS, métodos de requisição, status codes e arquitetura client-server.</div><span class="sk-lvl lvl-g">Bom domínio</span></div>
+    <div class="sk-card"><span class="sk-icon">🔀</span><div class="sk-name">Git & Versionamento</div><div class="sk-desc">Git/GitHub para controle de versão, branches, pull requests, resolução de conflitos e boas práticas de commits.</div><span class="sk-lvl lvl-g">Bom domínio</span></div>
+    <div class="sk-card"><span class="sk-icon">🐍</span><div class="sk-name">Python — Back-end</div><div class="sk-desc">Scripts, automações e APIs. Manipulação de dados, lógica de negócio, integração com bancos e serviços externos.</div><span class="sk-lvl lvl-e">Em evolução</span></div>
+    <div class="sk-card"><span class="sk-icon">🗄️</span><div class="sk-name">SQL & Banco de Dados</div><div class="sk-desc">PostgreSQL e MySQL — consultas, modelagem relacional, CRUD, JOINs e fundamentos aplicados a projetos reais.</div><span class="sk-lvl lvl-e">Em evolução</span></div>
+    <div class="sk-card"><span class="sk-icon">⚛️</span><div class="sk-name">React</div><div class="sk-desc">Componentes funcionais, hooks, gerenciamento de estado e criação de interfaces modernas e reativas.</div><span class="sk-lvl lvl-e">Em evolução</span></div>
+    <div class="sk-card"><span class="sk-icon">🔗</span><div class="sk-name">Integração Front + Back</div><div class="sk-desc">fetch/axios, consumo de APIs REST, JSON, autenticação e fluxo completo de dados ponta a ponta.</div><span class="sk-lvl lvl-e">Em evolução</span></div>
+    <div class="sk-card"><span class="sk-icon">⚡</span><div class="sk-name">Automações N8N / Make</div><div class="sk-desc">Fluxos no-code/low-code, integração via webhooks, REST e JSON. Metodologias ágeis aplicadas ao processo.</div><span class="sk-lvl lvl-g">Bom domínio</span></div>
+    <div class="sk-card"><span class="sk-icon">🐳</span><div class="sk-name">Docker & CI/CD</div><div class="sk-desc">Contêineres Docker, imagens e volumes. Fundamentos de pipelines CI/CD e deploy de aplicações.</div><span class="sk-lvl lvl-a">Aprendendo</span></div>
+    <div class="sk-card"><span class="sk-icon">✅</span><div class="sk-name">Clean Code & Boas Práticas</div><div class="sk-desc">SOLID, DRY, código limpo, documentação técnica, revisão de código e cultura de desenvolvimento sustentável.</div><span class="sk-lvl lvl-g">Bom domínio</span></div>
+  </div>
+  <div class="tools-strip reveal">
+    <div class="tools-lbl">Ferramentas & Soft Skills</div>
+    <div class="tools-list">
+      <span class="tool">VS Code</span><span class="tool">Postman</span><span class="tool">Linux</span>
+      <span class="tool">GitHub</span><span class="tool">SEI!</span><span class="tool">LGPD</span>
+      <span class="tool">💬 Comunicação assertiva</span><span class="tool">🤝 Trabalho em equipe</span>
+      <span class="tool">⚡ Proatividade</span><span class="tool">🔍 Atenção aos detalhes</span>
+      <span class="tool">📋 Organização</span><span class="tool">🛡️ Resiliência</span>
     </div>
   </div>
 </section>
 
 <!-- EXPERIÊNCIA -->
 <section id="experiencia">
-  <div class="s-eyebrow">03 · Trajetória</div>
-  <h2 class="s-title">Experiência<br>Profissional</h2>
-  <div class="timeline">
-
-    <div class="t-item">
-      <div class="t-period">2025 — Atual</div>
-      <div class="t-title">Suporte Jr</div>
-      <div class="t-company">Positivo S+</div>
-      <ul class="t-list">
-        <li>Atendimento e resolução de chamados técnicos de usuários internos e externos — N1.</li>
-        <li>Diagnóstico de incidentes em sistemas corporativos, escalonamento e acompanhamento.</li>
-        <li>Comunicação técnica clara com usuários finais e equipes de TI.</li>
-        <li>Registro de ocorrências e contribuição para base de conhecimento interna.</li>
+  <div class="sec-header"><span class="sec-num">03 ·</span><h2>Experiência <em>Profissional</em></h2></div>
+  <div class="exp-list reveal">
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div><div class="exp-role">Suporte Jr</div><div class="exp-co">Positivo S+</div></div>
+        <span class="exp-period">Ago/2025 — Presente</span>
+      </div>
+      <ul class="exp-ul">
+        <li>Atendimento N1 para resolução de incidentes técnicos de usuários internos e externos.</li>
+        <li>Diagnóstico e escalada de chamados em sistemas corporativos.</li>
+        <li>Documentação técnica e atualização de base de conhecimento.</li>
+        <li>Comunicação direta com equipes de TI e usuários finais para suporte sistêmico.</li>
       </ul>
     </div>
-
-    <div class="t-item">
-      <div class="t-period">2023 — 2024</div>
-      <div class="t-title">Estagiária — Setor de TI e Administração</div>
-      <div class="t-company">Ministério das Comunicações</div>
-      <ul class="t-list">
-        <li>Suporte administrativo com tramitação de processos via Sistema Eletrônico SEI!.</li>
-        <li>Aplicação das normas de Proteção de Dados Pessoais (LGPD) em processos do setor público federal.</li>
-        <li>Desenvolvimento de rotinas com foco em produtividade e gestão de tempo.</li>
-        <li>Contato com fluxos operacionais digitais e documentação técnica governamental.</li>
+    <div class="exp-item">
+      <div class="exp-meta">
+        <div><div class="exp-role">Estagiária — TI e Administração</div><div class="exp-co">Ministério das Comunicações</div></div>
+        <span class="exp-period">2023 — 2024</span>
+      </div>
+      <ul class="exp-ul">
+        <li>Tramitação de processos administrativos via Sistema Eletrônico de Informações (SEI!).</li>
+        <li>Aplicação das normas da LGPD em fluxos de dados do setor público federal.</li>
+        <li>Otimização de rotinas administrativas com foco em produtividade e gestão de tempo.</li>
+        <li>Suporte operacional em ambiente de governo digital.</li>
       </ul>
     </div>
-
   </div>
 </section>
 
 <!-- FORMAÇÃO -->
 <section id="formacao">
-  <div class="s-eyebrow">04 · Formação</div>
-  <h2 class="s-title">Educação &amp;<br>Certificações</h2>
-
+  <div class="sec-header"><span class="sec-num">04 ·</span><h2>Educação & <em>Certificações</em></h2></div>
   <div class="edu-grid reveal">
-    <div class="edu-card">
-      <div class="edu-badge">Cursando · 2026 →</div>
-      <div class="edu-icon">🖥️</div>
-      <div class="edu-degree">Ciência da Computação</div>
-      <div class="edu-school">UNICEUB — Brasília, DF</div>
-      <div class="edu-period">Janeiro de 2026 → em andamento</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-icon">🎓</div>
-      <div class="edu-degree">Ensino Médio Completo</div>
-      <div class="edu-school">Gisno Asa Norte</div>
-      <div class="edu-period">Concluído</div>
-    </div>
+    <div class="edu-card"><div class="edu-icon">🖥️</div><div class="edu-deg">Bacharelado em Ciência da Computação</div><div class="edu-inst">UniCEUB EAD — Brasília, DF</div><div class="edu-per">Cursando · Previsão de conclusão: 2031</div></div>
+    <div class="edu-card"><div class="edu-icon">🎓</div><div class="edu-deg">Ensino Médio Completo</div><div class="edu-inst">Gisno Asa Norte — Brasília, DF</div><div class="edu-per">Concluído</div></div>
   </div>
-
-  <div class="cert-section reveal">
-    <div class="cert-label">Cursos &amp; Certificações</div>
-    <div class="cert-grid">
-      <div class="cert">
-        <div class="cert-dot"></div>
-        <span class="cert-name">Proteção de Dados no Setor Público</span>
-        <span class="cert-meta">Abr/2024 · 15h</span>
-      </div>
-      <div class="cert">
-        <div class="cert-dot"></div>
-        <span class="cert-name">Gestão do Tempo e Produtividade</span>
-        <span class="cert-meta">Jun/2023 · 40h</span>
-      </div>
-      <div class="cert">
-        <div class="cert-dot"></div>
-        <span class="cert-name">Sistema Eletrônico de Informações — SEI!</span>
-        <span class="cert-meta">Jun/2023 · 20h</span>
-      </div>
-    </div>
+  <div class="tools-lbl reveal" style="margin-bottom:1rem;font-family:var(--mono);font-size:0.58rem;color:var(--muted);letter-spacing:0.13em;text-transform:uppercase">Cursos & Certificações</div>
+  <div class="certs-grid reveal">
+    <div class="cert-card"><div class="cert-name">The Legend of Python — Codédex</div><div class="cert-info">Abr/2025 — Em andamento</div></div>
+    <div class="cert-card"><div class="cert-name">Proteção de Dados no Setor Público — LGPD</div><div class="cert-info">Abr/2024 · 15h</div></div>
+    <div class="cert-card"><div class="cert-name">Gestão do Tempo e Produtividade</div><div class="cert-info">Jun/2023 · 40h</div></div>
+    <div class="cert-card"><div class="cert-name">Sistema Eletrônico de Informações — SEI!</div><div class="cert-info">Jun/2023 · 20h</div></div>
   </div>
 </section>
 
 <!-- CONTATO -->
-<section id="contato">
-  <div class="s-eyebrow">05 · Contato</div>
-  <h2 class="s-title">Vamos<br>conversar?</h2>
-  <p class="contact-sub">
-    Aberta a estágios em desenvolvimento, posições júnior e experiências internacionais. Me manda uma mensagem!
-  </p>
-  <div class="contact-grid">
-    <a href="mailto:annaclarasantosxz@gmail.com" class="c-card">
-      <div class="c-icon">✉️</div>
-      <div class="c-label">E-mail</div>
-      <div class="c-value">annaclarasantosxz@gmail.com</div>
-    </a>
-    <a href="https://wa.me/5561991067046" target="_blank" class="c-card">
-  <div class="c-icon">📱</div>
-  <div class="c-label">WhatsApp</div>
-  <div class="c-value">(61) 99106-7046</div>
-</a>
-    </a>
-    <a href="https://www.linkedin.com/in/anna-clara-santos-cavalcante-446561315" target="_blank" rel="noopener" class="c-card">
-      <div class="c-icon">💼</div>
-      <div class="c-label">LinkedIn</div>
-      <div class="c-value">anna-clara-santos-cavalcante</div>
-    </a>
-    <a href="https://github.com/Annna-sys" target="_blank" rel="noopener" class="c-card">
-      <div class="c-icon">⌥</div>
-      <div class="c-label">GitHub</div>
-      <div class="c-value">github.com/Annna-sys</div>
-    </a>
-    <div class="c-card">
-      <div class="c-icon">📍</div>
-      <div class="c-label">Localização</div>
-      <div class="c-value">Brasília, DF — Brasil</div>
-    </div>
+<section id="contato" style="text-align:center">
+  <div class="sec-header" style="justify-content:center;flex-direction:column;align-items:center;gap:0.5rem">
+    <span class="sec-num">05 · CONTATO</span>
+    <h2 style="font-size:clamp(2.8rem,6vw,5rem);text-align:center">Vamos <em>conversar?</em></h2>
   </div>
-  <div class="open-badge">
-    <span class="open-dot"></span>
-    Ativamente buscando oportunidades
+  <p class="contact-intro" style="max-width:520px;margin:0 auto 3rem;text-align:center">
+    Aberta a estágios em desenvolvimento, posições júnior e experiências internacionais. Acredito que bom código e boa comunicação caminham juntos — me manda uma mensagem!
+  </p>
+
+  <div class="clinks-grid reveal">
+    <a href="mailto:annaclarasantosxz@gmail.com" class="clink-card">
+      <span class="clink-icon">✉️</span>
+      <span class="clink-type">E-mail</span>
+      <span class="clink-val">annaclarasantosxz@gmail.com</span>
+    </a>
+    <a href="https://wa.me/5561991067046" target="_blank" class="clink-card">
+      <span class="clink-icon">📱</span>
+      <span class="clink-type">WhatsApp</span>
+      <span class="clink-val">(61) 99106-7046</span>
+    </a>
+    <a href="https://www.linkedin.com/in/anna-clara-santos-cavalcante-446561315" target="_blank" class="clink-card">
+      <span class="clink-icon">💼</span>
+      <span class="clink-type">LinkedIn</span>
+      <span class="clink-val">anna-clara-santos-cavalcante</span>
+    </a>
+    <a href="https://github.com/Annna-sys" target="_blank" class="clink-card">
+      <span class="clink-icon">⌥</span>
+      <span class="clink-type">GitHub</span>
+      <span class="clink-val">github.com/Annna-sys</span>
+    </a>
+  </div>
+
+  <div style="margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:1rem" class="reveal">
+    <div class="status-badge"><span class="sdot"></span>Ativamente buscando oportunidades</div>
+    <span style="font-family:var(--mono);font-size:0.62rem;color:var(--muted);letter-spacing:0.1em">📍 Brasília, DF — Brasil</span>
   </div>
 </section>
 
 <footer>
-  <div class="f-logo">Anna Clara Santos Cavalcante</div>
-  <div class="f-copy">© 2025 · Portfólio profissional</div>
+  <span class="foot-name">Anna Clara Santos Cavalcante</span>
+  <span class="foot-copy">© 2025 · Portfólio Profissional</span>
 </footer>
 
 <script>
-// CURSOR
-const cursor=document.getElementById('cursor');
-const ring=document.getElementById('cursorRing');
+// ── CURSOR
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
 });
-(function animRing(){
-  rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
-  ring.style.left=rx+'px';ring.style.top=ry+'px';
+function animRing(){
+  rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
   requestAnimationFrame(animRing);
-})();
-document.querySelectorAll('a,.btn,.hcard,.kcard,.a-card,.edu-card,.cert,.ttag,.c-card,.stat-box').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cursor.style.width='16px';cursor.style.height='16px';ring.style.width='52px';ring.style.height='52px'});
-  el.addEventListener('mouseleave',()=>{cursor.style.width='8px';cursor.style.height='8px';ring.style.width='32px';ring.style.height='32px'});
+}
+animRing();
+document.querySelectorAll('a,button,.tag,.tool,.sk-card,.exp-item,.cert-card,.edu-card,.clink').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cur.style.width='16px'; cur.style.height='16px'; cur.style.opacity='0.6';
+    ring.style.width='52px'; ring.style.height='52px';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cur.style.width='10px'; cur.style.height='10px'; cur.style.opacity='1';
+    ring.style.width='36px'; ring.style.height='36px';
+  });
 });
 
-// SCROLL REVEAL
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:.1});
-document.querySelectorAll('.reveal,.t-item').forEach(el=>obs.observe(el));
+// ── TOUCH FOLLOWER (mobile)
+const touchDot = document.createElement('div');
+touchDot.style.cssText='position:fixed;width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(107,143,71,0.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left 0.15s ease,top 0.15s ease;display:none';
+document.body.appendChild(touchDot);
+document.addEventListener('touchmove',e=>{
+  const t=e.touches[0];
+  touchDot.style.display='block';
+  touchDot.style.left=t.clientX+'px';
+  touchDot.style.top=t.clientY+'px';
+},{passive:true});
+document.addEventListener('touchend',()=>{
+  setTimeout(()=>touchDot.style.display='none',800);
+});
 
-// SKILL BARS
-const barObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
+// ── SCROLL REVEAL
+const revs=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
     if(e.isIntersecting){
-      e.target.querySelectorAll('.kl-fill').forEach(b=>{b.style.width=b.dataset.width+'%'});
+      setTimeout(()=>e.target.classList.add('visible'),i*90);
+      obs.unobserve(e.target);
     }
   });
-},{threshold:.2});
-document.querySelectorAll('#habilidades').forEach(el=>barObs.observe(el));
+},{threshold:0.07});
+revs.forEach(el=>obs.observe(el));
 
-// ACTIVE NAV
-const navAs=document.querySelectorAll('.nav-links a');
+// ── NAV ATIVA
+const secs=document.querySelectorAll('section[id]');
+const nls=document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll',()=>{
   let cur='';
-  document.querySelectorAll('[id]').forEach(sec=>{
-    if(window.scrollY>=sec.offsetTop-120)cur=sec.id;
-  });
-  navAs.forEach(a=>{
-    a.style.color=a.getAttribute('href')==='#'+cur?'var(--accent)':'';
-  });
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur=s.id});
+  nls.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--accent2)':''});
 });
 </script>
 </body>
